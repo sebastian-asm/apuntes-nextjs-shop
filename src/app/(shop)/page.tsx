@@ -1,10 +1,13 @@
-import { titleFont } from '@/config/fonts'
+import { ProductGrid, Title } from '@/components'
+import { initialData } from '@/seed/seed'
 
-export default function Home() {
+const products = initialData.products
+
+export default function ShopPage() {
   return (
-    <section className="">
-      <h1>Shop</h1>
-      <h1 className={titleFont.className}>NextJs Shop</h1>
+    <section>
+      <Title title="Tienda" subtitle="Todos los productos" className="mb-8" />
+      <ProductGrid products={products} />
     </section>
   )
 }
