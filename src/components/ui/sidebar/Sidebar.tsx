@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import {
   IoCloseOutline,
-  IoLogInOutline,
+  // IoLogInOutline,
   IoLogOutOutline,
   IoPeopleOutline,
   IoPersonOutline,
@@ -10,6 +10,10 @@ import {
   IoShirtOutline,
   IoTicketOutline
 } from 'react-icons/io5'
+// librería que permite agregar clases condicionles
+import clsx from 'clsx'
+
+import { useUIStore } from '@/store'
 
 interface OptionesProps {
   path: string
@@ -30,22 +34,33 @@ const optionsAdmin: OptionesProps[] = [
 ]
 
 export default function Sidebar() {
+  const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen)
+  const closeSideMenu = useUIStore((state) => state.closeSideMenu)
+
   return (
     <aside>
-      <div className="fixed top-0 w-screen h-screen z-10 bg-black opacity-30" />
-      <div className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm" />
-      <nav className="fixed p-5 right-0 top-0 w-[300px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300">
-        <IoCloseOutline
-          onClick={() => console.log('clic')}
-          size={50}
-          className="absolute top-5 right-5 cursor-pointer"
-        />
+      {isSideMenuOpen && (
+        <>
+          <div className="fixed top-0 w-screen h-screen z-10 bg-black opacity-30" />
+          <div
+            onClick={closeSideMenu}
+            className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm"
+          />
+        </>
+      )}
+      <nav
+        className={clsx(
+          'fixed p-5 right-0 top-0 w-[300px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300',
+          {
+            'translate-x-full': !isSideMenuOpen
+          }
+        )}
+      >
+        <IoCloseOutline onClick={closeSideMenu} size={50} className="absolute top-5 right-5 cursor-pointer" />
         <div className="relative mt-20">
           <IoSearchOutline size={20} className="absolute top-2 left-2" />
           <input
             type="text"
-            name=""
-            id=""
             placeholder="Buscar"
             className="w-full bg-gray-50 rounded pl-10 py-1 pr-10 border-b-2 border-gray-200 focus:outline-none focus:border-blue-500"
           />
