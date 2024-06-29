@@ -8,7 +8,7 @@ import { useUIStore } from '@/store'
 const options = [
   { path: '/category/men', title: 'Hombres' },
   { path: '/category/women', title: 'Mujeres' },
-  { path: '/category/kids', title: 'Niños' }
+  { path: '/category/kid', title: 'Niños' }
 ]
 
 export default function TopMenu() {
