@@ -4,5 +4,7 @@ export { default as ProductGridItem } from './products/product-grid/ProductGridI
 export { default as QuantitySelector } from './product/quantity-selector/QuantitySelector'
 export { default as Sidebar } from './ui/sidebar/Sidebar'
 export { default as SizeSelector } from './product/size-selector/SizeSelector'
+export { default as Slideshow } from './product/slideshow/Slideshow'
+export { default as SlideshowMobile } from './product/slideshow/SlideshowMobile'
 export { default as Title } from './ui/title/Title'
 export { default as TopMenu } from './ui/top-menu/TopMenu'
