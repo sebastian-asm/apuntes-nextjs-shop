@@ -15,7 +15,7 @@ export default function OrderPage({ params }: Props) {
   const productsInCart = [initialData.products[0], initialData.products[1], initialData.products[2]]
 
   return (
-    <section className="flex flex-col justify-center items-center mb-10 px-10 sm:px-0">
+    <section className="flex flex-col justify-center items-center mb-10 px-5 sm:px-0">
       <Title title={`Orden de compra #${id}`} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 items-start">
         <div>

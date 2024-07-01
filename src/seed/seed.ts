@@ -11,14 +11,16 @@ interface SeedProduct {
   gender: 'men' | 'women' | 'kid' | 'unisex'
 }
 
-type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL'
+type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL'
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats'
 
 interface SeedData {
   products: SeedProduct[]
+  categories: string[]
 }
 
 export const initialData: SeedData = {
+  categories: ['Shirts', 'Pants', 'Hoodies', 'Hats'],
   products: [
     {
       description:

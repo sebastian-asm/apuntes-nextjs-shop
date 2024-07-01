@@ -6,9 +6,9 @@ import { Title } from '@/components'
 export default function OrdersPage() {
   return (
     <>
-      <Title title="Ordenes de compra" />
-      <div className="mb-10">
-        <table className="min-w-full">
+      <div className="mb-10 mx-5">
+        <Title title="Ordenes de compra" />
+        <table className="min-w-full overflow">
           <thead className="bg-gray-200 border-b">
             <tr>
               <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
