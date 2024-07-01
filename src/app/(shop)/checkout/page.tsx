@@ -7,7 +7,7 @@ import { initialData } from '@/seed/seed'
 export default function CheckoutPage() {
   const productsInCart = [initialData.products[0], initialData.products[1], initialData.products[2]]
   return (
-    <section className="flex flex-col justify-center items-center mb-10 px-10 sm:px-0">
+    <section className="flex flex-col justify-center items-center mb-10 px-5 sm:px-0">
       <Title title="Verificar compra" />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 items-start">
         <div>
