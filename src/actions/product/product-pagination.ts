@@ -1,16 +1,19 @@
 import prisma from '@/lib/prisma'
+import { Gender } from '@prisma/client'
 
 interface PaginationOptions {
   page?: number
   take?: number
+  gender?: Gender
 }
 
-export const getProductsWithImages = async ({ page = 1, take = 12 }: PaginationOptions) => {
+export const getProductsWithImages = async ({ page = 1, take = 12, gender }: PaginationOptions) => {
   if (isNaN(+page) || +page < 1) page = 1
   try {
     const products = await prisma.product.findMany({
       take,
       skip: (page - 1) * take,
+      where: { gender },
       include: {
         ProductImage: {
           take: 2,
@@ -19,7 +22,7 @@ export const getProductsWithImages = async ({ page = 1, take = 12 }: PaginationO
       }
     })
 
-    const totalCount = await prisma.product.count()
+    const totalCount = await prisma.product.count({ where: { gender } })
     const totalPages = Math.ceil(totalCount / take)
 
     return {

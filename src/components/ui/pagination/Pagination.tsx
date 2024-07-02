@@ -17,6 +17,8 @@ export default function Pagination({ totalPages }: Props) {
   const currentPage = isNaN(+pageString) ? 1 : +pageString
   const allPages = generatePaginationNumber(currentPage, totalPages)
 
+  console.log(pathname)
+
   if (currentPage < 1) redirect(pathname)
 
   const createPageUrl = (pageNumber: string | number) => {
@@ -44,7 +46,7 @@ export default function Pagination({ totalPages }: Props) {
             <li key={index} className="page-item">
               <Link
                 className={clsx(
-                  'page-link block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
+                  'page-link block py-1.5 px-3 rounded border-0 outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none',
                   {
                     'bg-blue-500 text-white shadow-sm hover:bg-blue-400 hover:text-white': page === currentPage
                   }

@@ -1,17 +1,18 @@
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+export const revalidate = 60
+
 import { redirect } from 'next/navigation'
 
 import { getProductsWithImages } from '@/actions'
 import { Pagination, ProductGrid, Title } from '@/components'
 
 interface Props {
-  searchParams: {
-    page?: string
-  }
+  searchParams: { page?: string }
 }
 
 export default async function ShopPage({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1
-  const { products, currentPage, totalPages } = await getProductsWithImages({ page })
+  const { products, totalPages } = await getProductsWithImages({ page })
   if (products.length === 0) redirect('/')
 
   return (

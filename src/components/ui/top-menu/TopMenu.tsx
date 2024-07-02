@@ -6,9 +6,9 @@ import { titleFont } from '@/config/fonts'
 import { useUIStore } from '@/store'
 
 const options = [
-  { path: '/category/men', title: 'Hombres' },
-  { path: '/category/women', title: 'Mujeres' },
-  { path: '/category/kid', title: 'Niños' }
+  { path: '/gender/men', title: 'Hombres' },
+  { path: '/gender/women', title: 'Mujeres' },
+  { path: '/gender/kid', title: 'Niños' }
 ]
 
 export default function TopMenu() {
