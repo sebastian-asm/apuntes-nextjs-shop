@@ -1,5 +1,6 @@
 export { default as Footer } from './ui/footer/Footer'
 export { default as PageNotFound } from './ui/not-found/PageNotFound'
+export { default as Pagination } from './ui/pagination/Pagination'
 export { default as ProductGrid } from './products/product-grid/ProductGrid'
 export { default as ProductGridItem } from './products/product-grid/ProductGridItem'
 export { default as QuantitySelector } from './product/quantity-selector/QuantitySelector'
