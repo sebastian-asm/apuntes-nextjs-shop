@@ -1,6 +1,7 @@
 // Se revalidan los datos de la página después de 7 días (Time-based revalidation)
 export const revalidate = 604800
 
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { QuantitySelector, SizeSelector, Slideshow, SlideshowMobile, StockLabel } from '@/components'
@@ -9,6 +10,22 @@ import { getProductBySlug } from '@/actions'
 
 interface Props {
   params: { slug: string }
+}
+
+// Metadata dinámica
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = params
+  const product = await getProductBySlug(slug)
+
+  return {
+    title: product?.title,
+    description: product?.description,
+    openGraph: {
+      title: product?.title,
+      description: product?.description,
+      images: [`/products/${product?.images[1]}`]
+    }
+  }
 }
 
 export default async function ProductPage({ params }: Props) {

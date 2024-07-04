@@ -3,8 +3,12 @@ import type { Metadata } from 'next'
 import { inter } from '@/config/fonts'
 import './globals.css'
 
+// Metadata estática
 export const metadata: Metadata = {
-  title: 'NextJS Shop',
+  title: {
+    template: '%s | NextJS Shop',
+    default: 'Inicio | NextJS Shop'
+  },
   description: 'Tienda virtual creada con NextJS 13+'
 }
 
