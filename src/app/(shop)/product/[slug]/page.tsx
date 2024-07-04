@@ -1,18 +1,19 @@
+// Se revalidan los datos de la página después de 7 días (Time-based revalidation)
+export const revalidate = 604800
+
 import { notFound } from 'next/navigation'
 
-import { initialData } from '@/seed/seed'
-import { QuantitySelector, SizeSelector, Slideshow, SlideshowMobile } from '@/components'
+import { QuantitySelector, SizeSelector, Slideshow, SlideshowMobile, StockLabel } from '@/components'
 import { titleFont } from '@/config/fonts'
+import { getProductBySlug } from '@/actions'
 
 interface Props {
   params: { slug: string }
 }
 
-const products = initialData.products
-
-export default function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
   const { slug } = params
-  const product = products.find((product) => product.slug === slug)
+  const product = await getProductBySlug(slug)
   if (!product) notFound()
 
   return (
@@ -22,6 +23,8 @@ export default function ProductPage({ params }: Props) {
         <Slideshow title={product.title} images={product.images} className="hidden md:block" />
       </div>
       <div className="px-5">
+        {/* El stock es el único dato que se mantiene actualizado on-demand */}
+        <StockLabel slug={product.slug} />
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
         <p className="text-lg mb-5">${product.price}</p>
         <SizeSelector selectedSize={product.sizes[0]} availableSizes={product.sizes} />
