@@ -17,8 +17,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const { products, totalPages } = await getProductsWithImages({ page, gender: gender as Gender })
   if (products.length === 0) redirect(`/gender/${gender}`)
 
-  console.log(products.length)
-
   const label: Record<string, string> = {
     men: 'Hombres',
     women: 'Mujeres',

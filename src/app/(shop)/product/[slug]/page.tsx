@@ -4,9 +4,10 @@ export const revalidate = 604800
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { QuantitySelector, SizeSelector, Slideshow, SlideshowMobile, StockLabel } from '@/components'
+import { Slideshow, SlideshowMobile, StockLabel } from '@/components'
 import { titleFont } from '@/config/fonts'
 import { getProductBySlug } from '@/actions'
+import AddToCart from './ui/AddToCart'
 
 interface Props {
   params: { slug: string }
@@ -44,11 +45,7 @@ export default async function ProductPage({ params }: Props) {
         <StockLabel slug={product.slug} />
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
         <p className="text-lg mb-5">${product.price}</p>
-        <SizeSelector selectedSize={product.sizes[0]} availableSizes={product.sizes} />
-        <QuantitySelector quantity={2} />
-        <button type="button" className="btn-primary my-5">
-          Agregar al carrito
-        </button>
+        <AddToCart product={product} />
         <div>
           <h3 className="font-bold">Descripción</h3>
           <p className="font-light">{product.description}</p>
