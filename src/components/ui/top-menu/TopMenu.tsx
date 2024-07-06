@@ -1,9 +1,10 @@
 'use client'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
 
 import { titleFont } from '@/config/fonts'
-import { useUIStore } from '@/store'
+import { useCartStore, useUIStore } from '@/store'
 
 const options = [
   { path: '/gender/men', title: 'Hombres' },
@@ -12,7 +13,13 @@ const options = [
 ]
 
 export default function TopMenu() {
+  const [loadedComponent, setLoadedComponent] = useState(false)
   const openSideMenu = useUIStore((state) => state.openSideMenu)
+  const totalItems = useCartStore((state) => state.getTotalItems())
+
+  // Esto evita problema de la hidratación con el contador de elementos del carrito
+  useEffect(() => setLoadedComponent(true), [])
+
   return (
     <nav className="flex px-5 justify-between items-center w-full py-2">
       <div>
@@ -33,9 +40,11 @@ export default function TopMenu() {
         </Link>
         <Link href="/cart" className="mx-2">
           <div className="relative">
-            <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white">
-              3
-            </span>
+            {loadedComponent && totalItems > 0 && (
+              <span className="absolute text-xs rounded-full px-1 font-bold -top-2 -right-2 bg-blue-700 text-white">
+                {totalItems}
+              </span>
+            )}
             <IoCartOutline className="w-5 h-5" />
           </div>
         </Link>

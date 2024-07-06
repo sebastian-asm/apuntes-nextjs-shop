@@ -26,7 +26,14 @@ export default function SlideshowMobile({ images, title, className }: Props) {
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <Image src={`/products/${image}`} width="600" height="500" alt={title} className="object-fill" />
+            <Image
+              src={`/products/${image}`}
+              width="600"
+              height="500"
+              alt={title}
+              className="object-fill"
+              priority={true}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

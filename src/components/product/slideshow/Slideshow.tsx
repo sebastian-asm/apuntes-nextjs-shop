@@ -43,6 +43,7 @@ export default function Slideshow({ images, title, className }: Props) {
               height="800"
               alt={title}
               className="rounded-lg object-fill"
+              priority={true}
             />
           </SwiperSlide>
         ))}
