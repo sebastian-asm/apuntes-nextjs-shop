@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Title } from '@/components'
 import ProductInCart from './ui/ProductInCart'
+import OrderSummary from './ui/OrderSummary'
 
 export default function CartPage() {
   // redirect('/empty')
@@ -19,17 +20,8 @@ export default function CartPage() {
           <ProductInCart />
         </div>
         <div className="bg-white rounded-xl shadow-xl p-7">
-          <h2 className="text-2xl mb-2">Detalle de la compra</h2>
-          <div className="grid grid-cols-2">
-            <p>Cantidad de productos:</p>
-            <p className="text-right">3</p>
-            <p>Subtotal:</p>
-            <p className="text-right">$123</p>
-            <p>Impuestos (19%):</p>
-            <p className="text-right">$123</p>
-            <p className="mt-4 text-xl">Total:</p>
-            <p className="text-right mt-4 text-xl">$123</p>
-          </div>
+          <h2 className="text-2xl mb-2">Detalle de compra</h2>
+          <OrderSummary />
           <div className="mt-6">
             <Link href="/checkout/address" className="btn-primary w-full block text-center">
               Siguiente
