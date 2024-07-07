@@ -1,3 +1,5 @@
+import { hashSync } from 'bcrypt'
+
 interface SeedProduct {
   description: string
   images: string[]
@@ -11,15 +13,27 @@ interface SeedProduct {
   gender: 'men' | 'women' | 'kid' | 'unisex'
 }
 
+interface SeedUser {
+  email: string
+  password: string
+  name: string
+  role: 'admin' | 'user'
+}
+
 type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL'
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats'
 
 interface SeedData {
   products: SeedProduct[]
+  users: SeedUser[]
   categories: string[]
 }
 
 export const initialData: SeedData = {
+  users: [
+    { email: 'sebas@sebas.com', password: hashSync('123456', 10), name: 'Seba', role: 'admin' },
+    { email: 'belu@belu.com', password: hashSync('123456', 10), name: 'Belu', role: 'user' }
+  ],
   categories: ['Shirts', 'Pants', 'Hoodies', 'Hats'],
   products: [
     {
