@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Provider } from '@/components'
 import { inter } from '@/config/fonts'
 import './globals.css'
 
@@ -15,7 +16,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* Provider que permite obtener la sesión del lado del cliente */}
+        {/* Para este provider es necesario una api rest para que verifique la sesión */}
+        {/* En este caso sería en /api/auth/[...nextauth]/route.ts */}
+        <Provider>{children}</Provider>
+      </body>
     </html>
   )
 }

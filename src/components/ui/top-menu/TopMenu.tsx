@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
 
@@ -13,12 +14,18 @@ const options = [
 ]
 
 export default function TopMenu() {
+  const params = useParams()
   const [loadedComponent, setLoadedComponent] = useState(false)
   const openSideMenu = useUIStore((state) => state.openSideMenu)
   const totalItems = useCartStore((state) => state.getTotalItems())
 
   // Esto evita problema de la hidratación con el contador de elementos del carrito
   useEffect(() => setLoadedComponent(true), [])
+
+  const activeLink = (path: string): string => {
+    const shortPath = path.split('/').at(-1)
+    return shortPath === params.gender ? 'bg-gray-100' : ''
+  }
 
   return (
     <nav className="flex px-5 justify-between items-center w-full py-2">
@@ -29,7 +36,11 @@ export default function TopMenu() {
       </div>
       <div className="hidden sm:block">
         {options.map((option) => (
-          <Link key={option.title} href={option.path} className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
+          <Link
+            key={option.title}
+            href={option.path}
+            className={`${activeLink(option.path)} m-2 p-2 rounded-md transition-all hover:bg-gray-100`}
+          >
             {option.title}
           </Link>
         ))}

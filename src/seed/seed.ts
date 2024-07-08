@@ -31,7 +31,7 @@ interface SeedData {
 
 export const initialData: SeedData = {
   users: [
-    { email: 'sebas@sebas.com', password: hashSync('123456', 10), name: 'Seba', role: 'admin' },
+    { email: 'seba@seba.com', password: hashSync('123456', 10), name: 'Seba', role: 'admin' },
     { email: 'belu@belu.com', password: hashSync('123456', 10), name: 'Belu', role: 'user' }
   ],
   categories: ['Shirts', 'Pants', 'Hoodies', 'Hats'],
