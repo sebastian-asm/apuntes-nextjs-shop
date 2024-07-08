@@ -13,3 +13,13 @@ export async function authenticate(prevState: string | undefined, formData: Form
     return 'CredentialsSignin'
   }
 }
+
+export async function login(email: string, password: string) {
+  try {
+    await signIn('credentials', { email, password })
+    return true
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
