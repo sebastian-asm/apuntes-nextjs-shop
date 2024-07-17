@@ -4,6 +4,6 @@ import { auth } from '@/auth'
 
 export default async function CheckoutLayout({ children }: { children: React.ReactNode }) {
   const session = await auth()
-  if (!session?.user) redirect('/')
+  if (!session?.user) redirect('/auth/login')
   return children
 }
