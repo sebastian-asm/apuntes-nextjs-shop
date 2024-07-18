@@ -46,8 +46,8 @@ export default function AddressForm({ countries, userStoredAddress = {} }: Props
   }, [reset, address])
 
   const onSubmit = async (inputs: Inputs) => {
-    setAddress(inputs)
     const { remenberAddress, ...rest } = inputs
+    setAddress(rest)
     if (remenberAddress) await setUserAddress(rest, session!.user.id)
     else await deleteUserAddress(session!.user.id)
     router.push('/checkout')
