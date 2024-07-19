@@ -7,7 +7,7 @@ interface PaginationOptions {
   gender?: Gender
 }
 
-export const getProductsWithImages = async ({ page = 1, take = 12, gender }: PaginationOptions) => {
+export async function getProductsWithImages({ page = 1, take = 12, gender }: PaginationOptions) {
   if (isNaN(+page) || +page < 1) page = 1
   try {
     const products = await prisma.product.findMany({

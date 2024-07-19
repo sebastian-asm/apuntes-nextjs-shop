@@ -23,5 +23,5 @@ export interface CartProduct {
 }
 
 export type ValidCategory = 'men' | 'women' | 'kid' | 'unisex'
-export type ValidSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL'
+export type ValidSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL'
 export type ValidType = 'shirts' | 'pants' | 'hoodies' | 'hats'

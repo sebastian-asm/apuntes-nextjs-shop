@@ -1,16 +1,21 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 
 import { useAddressStore, useCartStore } from '@/store'
 import { currencyFormat } from '@/utils'
+import { placeOrder } from '@/actions'
 
 export default function PlaceOrder() {
   const [loaded, setLoaded] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [isPlacingOrder, setIsPlacingOrder] = useState(false)
   const address = useAddressStore((state) => state.address)
   const { itemsInCart, subtotal, tax, total } = useCartStore((state) => state.getSummaryInformation())
   const cart = useCartStore((state) => state.cart)
+  const clearCart = useCartStore((state) => state.clearCart)
+  const router = useRouter()
 
   useEffect(() => setLoaded(true), [])
 
@@ -21,8 +26,16 @@ export default function PlaceOrder() {
       quantity: product.quantity,
       size: product.size
     }))
-    console.log(productsToOrder)
-    setIsPlacingOrder(false)
+
+    const resp = await placeOrder(productsToOrder, address)
+    if (!resp.order) {
+      setIsPlacingOrder(false)
+      setErrorMessage(resp.message)
+      return
+    }
+
+    clearCart()
+    router.replace(`/orders/${resp.order.id}`)
   }
 
   if (!loaded) return <p>Cargando...</p>
@@ -51,7 +64,7 @@ export default function PlaceOrder() {
         <p className="leading-relaxed">
           Ciudad y país:{' '}
           <strong>
-            {address.city} {address.country}
+            {address.city}, {address.country}
           </strong>
         </p>
         <p className="leading-relaxed">
@@ -70,8 +83,8 @@ export default function PlaceOrder() {
         <p className="mt-4 text-xl">Total:</p>
         <p className="text-right mt-4 text-xl">{currencyFormat(total)}</p>
       </div>
+      {errorMessage && <p className="p-2.5 bg-red-200 mt-4 rounded-lg text-sm text-red-600 fade-in">{errorMessage}</p>}
       <div className="mt-6">
-        {/* href="/orders/123" */}
         <button
           onClick={onPlaceOrder}
           className={clsx('w-full', {

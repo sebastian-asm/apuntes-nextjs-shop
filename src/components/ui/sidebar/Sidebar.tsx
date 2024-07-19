@@ -25,7 +25,7 @@ interface OptionesProps {
 
 const options: OptionesProps[] = [
   { path: '/profile', icon: <IoPersonOutline size={20} />, title: 'Perfil' },
-  { path: '/', icon: <IoTicketOutline size={20} />, title: 'Ordenes' }
+  { path: '/orders', icon: <IoTicketOutline size={20} />, title: 'Ordenes' }
 ]
 
 const optionsAdmin: OptionesProps[] = [

@@ -9,6 +9,7 @@ interface State {
   getTotalItems: () => number
   updateProductQuantity: (product: CartProduct, quantity: number) => void
   removeProduct: (product: CartProduct) => void
+  clearCart: () => void
   getSummaryInformation: () => {
     subtotal: number
     tax: number
@@ -66,7 +67,8 @@ export const useCartStore = create<State>()(
         const tax = subtotal * 0.19
         const total = subtotal + tax
         return { subtotal, tax, total, itemsInCart }
-      }
+      },
+      clearCart: () => set({ cart: [] })
     }),
     {
       name: 'shopping-cart'

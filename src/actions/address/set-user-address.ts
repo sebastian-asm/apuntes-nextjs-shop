@@ -2,7 +2,7 @@
 import { Address } from '@/interfaces'
 import prisma from '@/lib/prisma'
 
-export const setUserAddress = async (address: Address, userId: string) => {
+export async function setUserAddress(address: Address, userId: string) {
   try {
     const newAddress = await createOrReplaceAddress(address, userId)
     return { address: newAddress, message: 'Dirección guardada exitosamente' }
@@ -12,7 +12,7 @@ export const setUserAddress = async (address: Address, userId: string) => {
   }
 }
 
-const createOrReplaceAddress = async (address: Address, userId: string) => {
+async function createOrReplaceAddress(address: Address, userId: string) {
   try {
     const storeAddress = await prisma.userAddress.findUnique({ where: { userId } })
     const addressToSave = {

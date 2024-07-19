@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma'
 
-export const getProductBySlug = async (slug: string) => {
+export async function getProductBySlug(slug: string) {
   try {
     const product = await prisma.product.findFirst({
       include: {
