@@ -3,7 +3,7 @@ import { IoCardOutline } from 'react-icons/io5'
 import Image from 'next/image'
 import clsx from 'clsx'
 
-import { Title } from '@/components'
+import { PayPalButton, Title } from '@/components'
 import { getOrderById } from '@/actions'
 import { currencyFormat } from '@/utils'
 
@@ -94,6 +94,9 @@ export default async function OrderPage({ params }: Props) {
             <p className="text-right">{order?.tax && currencyFormat(order.tax)}</p>
             <p className="mt-4 text-xl">Total:</p>
             <p className="text-right mt-4 text-xl">{order?.total && currencyFormat(order.total)}</p>
+          </div>
+          <div className="mt-8">
+            <PayPalButton />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Provider } from '@/components'
+import { Providers } from '@/components'
 import { inter } from '@/config/fonts'
 import './globals.css'
 
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* Provider que permite obtener la sesión del lado del cliente */}
         {/* Para este provider es necesario una api rest para que verifique la sesión */}
         {/* En este caso sería en /api/auth/[...nextauth]/route.ts */}
-        <Provider>{children}</Provider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
