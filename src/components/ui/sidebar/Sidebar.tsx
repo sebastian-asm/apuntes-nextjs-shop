@@ -30,8 +30,8 @@ const options: OptionesProps[] = [
 
 const optionsAdmin: OptionesProps[] = [
   { path: '/', icon: <IoShirtOutline size={20} />, title: 'Productos' },
-  { path: '/', icon: <IoTicketOutline size={20} />, title: 'Ordenes' },
-  { path: '/', icon: <IoPeopleOutline size={20} />, title: 'Clientes' }
+  { path: '/admin/orders', icon: <IoTicketOutline size={20} />, title: 'Ordenes' },
+  { path: '/admin/users', icon: <IoPeopleOutline size={20} />, title: 'Usuarios' }
 ]
 
 export default function Sidebar() {
@@ -108,6 +108,7 @@ export default function Sidebar() {
             <hr />
             {optionsAdmin.map((option) => (
               <Link
+                onClick={closeSideMenu}
                 key={option.title}
                 href={option.path}
                 className="flex items-center my-5 p-2 hover:bg-gray-100 rounded transition-all"
