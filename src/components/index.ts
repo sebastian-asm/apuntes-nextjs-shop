@@ -1,4 +1,5 @@
 export { default as Footer } from './ui/footer/Footer'
+export { default as OrderStatus } from './orders/OrderStatus'
 export { default as PageNotFound } from './ui/not-found/PageNotFound'
 export { default as Pagination } from './ui/pagination/Pagination'
 export { default as PayPalButton } from './paypal/PayPalButton'
