@@ -29,7 +29,7 @@ const options: OptionesProps[] = [
 ]
 
 const optionsAdmin: OptionesProps[] = [
-  { path: '/', icon: <IoShirtOutline size={20} />, title: 'Productos' },
+  { path: '/admin/products', icon: <IoShirtOutline size={20} />, title: 'Productos' },
   { path: '/admin/orders', icon: <IoTicketOutline size={20} />, title: 'Ordenes' },
   { path: '/admin/users', icon: <IoPeopleOutline size={20} />, title: 'Usuarios' }
 ]
