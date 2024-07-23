@@ -1,10 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
+import Link from 'next/link'
 
 import { useCartStore } from '@/store'
-import { QuantitySelector } from '@/components'
-import Link from 'next/link'
+import { ProductImage, QuantitySelector } from '@/components'
 
 export default function ProductInCart() {
   const [loadedComponent, setLoadedComponente] = useState(false)
@@ -20,11 +19,11 @@ export default function ProductInCart() {
     loadedComponent &&
     productsInCart.map((product) => (
       <div key={`${product.slug}-${product.size}`} className="flex mb-4">
-        <Image
-          src={`/products/${product.image}`}
+        <ProductImage
+          src={product.image}
           alt={product.title}
-          width="100"
-          height="100"
+          width={100}
+          height={100}
           className="rounded object-cover"
         />
         <div className="ml-2">
